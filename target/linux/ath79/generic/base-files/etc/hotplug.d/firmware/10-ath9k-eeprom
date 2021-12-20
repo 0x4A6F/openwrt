@@ -160,6 +160,9 @@ case "$FIRMWARE" in
 	meraki,mr16)
 		caldata_extract "art" 0x11000 0xeb8
 		;;
+	ruckus,zf7363)
+		caldata_extract "art" 0x41000 0x440
+		;;
 	*)
 		caldata_die "board $board is not supported yet"
 		;;
@@ -178,6 +181,9 @@ case "$FIRMWARE" in
 		;;
 	meraki,mr16)
 		caldata_extract "art" 0x15000 0xeb8
+		;;
+	ruckus,zf7363)
+		caldata_extract "art" 0x45000 0x440
 		;;
 	*)
 		caldata_die "board $board is not supported yet"

@@ -425,6 +425,10 @@ ath79_setup_interfaces()
 		ucidef_add_switch "switch0" \
 			"0@eth0" "1:lan" "2:lan" "3:wan"
 		;;
+	ruckus,zf7363)
+		ucidef_set_interface_wan "eth0"
+		ucidef_set_interface_lan "eth1"
+		;;
 	teltonika,rut955|\
 	teltonika,rut955-h7v3c0)
 		ucidef_set_interface_wan "eth1"
@@ -704,6 +708,8 @@ ath79_setup_macs()
 	ruckus,zf7372)
 		lan_mac=$(mtd_get_mac_binary board-data 0x807E)
 		label_mac=$lan_mac
+	ruckus,zf7363)
+		label_mac=$(mtd_get_mac_binary art 0x807e)
 		;;
 	sitecom,wlr-7100|\
 	sitecom,wlr-8100)
