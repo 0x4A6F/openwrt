@@ -65,22 +65,21 @@
 	};
 
 	keys {
+		// TODO: gpio 10 freezes system
 		compatible = "gpio-keys";
 
-		/* TODO: gpio 10 freezes system
-		// Hard Reset?
+		// Hard Reset
 		reset {
 			label = "reset";
 			linux,code = <KEY_RESTART>;
-			gpios = <&gpio 10 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio 8 GPIO_ACTIVE_LOW>;
 		};
-		*/
 
 		// OPT
 		opt {
 			label = "opt";
 			linux,code = <KEY_WPS_BUTTON>;
-			gpios = <&gpio 11 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio 11 GPIO_ACTIVE_HIGH>;
 		};
 	};
 
@@ -236,6 +235,7 @@
 &mdio0 {
 	status = "okay";
 
+	phy-mask = <0x1100>;
 	/*
 	  | reg: label | Stock | OpenWrt |    Comment         |
 	  | ---------- | ----- | ------- | ------------------ |
