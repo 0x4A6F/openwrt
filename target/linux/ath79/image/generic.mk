@@ -137,6 +137,11 @@ define Build/pisen_wmb001n-factory
   rm -rf "$@.tmp"
 endef
 
+define Build/ruckus_fw_header
+	$(STAGING_DIR_HOST)/bin/ruckus_fw_header -i $@ -o $@.out
+	mv -f $@.out $@
+endef
+
 define Build/teltonika-fw-fake-checksum
 	# Teltonika U-Boot web based firmware upgrade/recovery routine compares
 	# 16 bytes from md5sum1[16] field in TP-Link v1 header (offset: 76 bytes
@@ -2410,7 +2415,7 @@ define Device/ruckus_zf7363
   IMAGE_SIZE := 7168k
   BLOCKSIZE := 256k
   #TODO: add ruckus_fw_header (ath79: add support for Ruckus R500 #4241)
-  KERNEL := kernel-bin | append-dtb | lzma-no-dict | uImage lzma
+  KERNEL := kernel-bin | append-dtb | lzma-no-dict | uImage lzma | ruckus_fw_header
   KERNEL_INITRAMFS := kernel-bin | append-dtb | uImage none
 endef
 TARGET_DEVICES += ruckus_zf7363

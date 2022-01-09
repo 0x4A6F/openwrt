@@ -133,7 +133,6 @@
 				openwrt,offset = <0xA0>;
 				openwrt,partition-magic = <0x52434B53>;
 				reg = <0x40000 0x700000>;
-				read-only;
 			};
 
 			// 0x000000740000-0x000000860000 : "rcks_wlan.bkup"
