@@ -708,6 +708,7 @@ ath79_setup_macs()
 	ruckus,zf7372)
 		lan_mac=$(mtd_get_mac_binary board-data 0x807E)
 		label_mac=$lan_mac
+		;;
 	ruckus,zf7363)
 		label_mac=$(mtd_get_mac_binary art 0x807e)
 		;;

@@ -2401,24 +2401,27 @@ define Device/ruckus_zf7321
 endef
 TARGET_DEVICES += ruckus_zf7321
 
+define Device/ruckus_zf7363
+  $(Device/ruckus_zf73xx_common)
+  SOC := ar7161
+  DEVICE_MODEL := ZoneFlex 7363
+  DEVICE_PACKAGES := swconfig
+  #IMAGE_SIZE := 7168k
+  #BLOCKSIZE := 256k
+  #TODO: add ruckus_fw_header (ath79: add support for Ruckus R500 #4241)
+  #KERNEL := kernel-bin | append-dtb | lzma-no-dict | uImage lzma | ruckus_fw_header
+  #KERNEL_INITRAMFS := kernel-bin | append-dtb | uImage none
+  KERNEL := kernel-bin | append-dtb | lzma | loader-kernel | uImage none | ruckus_fw_header
+  KERNEL_INITRAMFS := kernel-bin | append-dtb | lzma | loader-kernel | uImage none
+endef
+TARGET_DEVICES += ruckus_zf7363
+
 define Device/ruckus_zf7372
   $(Device/ruckus_zf73xx_common)
   SOC := ar9344
   DEVICE_MODEL := ZoneFlex 7352/7372[-E/-U]
 endef
 TARGET_DEVICES += ruckus_zf7372
-
-define Device/ruckus_zf7363
-  SOC := ar7161
-  DEVICE_VENDOR := Ruckus
-  DEVICE_MODEL := ZF7363
-  IMAGE_SIZE := 7168k
-  BLOCKSIZE := 256k
-  #TODO: add ruckus_fw_header (ath79: add support for Ruckus R500 #4241)
-  KERNEL := kernel-bin | append-dtb | lzma-no-dict | uImage lzma | ruckus_fw_header
-  KERNEL_INITRAMFS := kernel-bin | append-dtb | uImage none
-endef
-TARGET_DEVICES += ruckus_zf7363
 
 define Device/samsung_wam250
   SOC := ar9344

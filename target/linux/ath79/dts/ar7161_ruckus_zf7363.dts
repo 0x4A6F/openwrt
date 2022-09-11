@@ -4,13 +4,14 @@
 
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/input/input.h>
+#include <dt-bindings/mtd/partitions/uimage.h>
 
 / {
 	compatible = "ruckus,zf7363", "qca,ar7161";
 	model = "Ruckus ZF7363";
 
 	chosen {
-		bootargs = "console=ttyS0,115200n8";
+		bootargs = "console=ttyS0,115200n8 deferred_probe_timeout=1";
 	};
 
 	aliases {
@@ -112,7 +113,7 @@
 	flash@0 {
 		compatible = "jedec,spi-nor";
 		reg = <0>;
-		spi-max-frequency = <50000000>;
+		spi-max-frequency = <25000000>;
 
 		partitions {
 			compatible = "fixed-partitions";
@@ -122,7 +123,7 @@
 			// 0x000000000000-0x000000040000 : "u-boot"
 			partition@0 {
 				label = "u-boot";
-				reg = <0x0000000 0x40000>;
+				reg = <0x000000 0x040000>;
 				read-only;
 			};
 
@@ -132,7 +133,7 @@
 				label = "firmware";
 				openwrt,offset = <0xA0>;
 				openwrt,partition-magic = <0x52434B53>;
-				reg = <0x40000 0x700000>;
+				reg = <0x040000 0x700000>;
 			};
 
 			// 0x000000740000-0x000000860000 : "rcks_wlan.bkup"
